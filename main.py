@@ -3,6 +3,7 @@ from onnx import shape_inference
 from collections import defaultdict, deque
 import numpy as np
 import math
+import sys
 
 # ONNX dtype 문자열 → byte size
 ONNX_TYPE_SIZE = {
@@ -70,6 +71,28 @@ def get_attribute(node, attr_name, default=None):
                 return attr.i
     return default
 
+def resolve_dynamic_shapes(model, batch_size=1):
+    for tensor in model.graph.input:
+        shape = tensor.type.tensor_type.shape
+        for dim in shape.dim:
+            if dim.dim_param:  # dynamic ('batch_size')인 경우
+                dim.dim_value = batch_size
+                dim.ClearField("dim_param")  # 'batch_size' 제거
+
+    for tensor in model.graph.output:
+        shape = tensor.type.tensor_type.shape
+        for dim in shape.dim:
+            if dim.dim_param:  # dynamic ('batch_size')인 경우
+                dim.dim_value = batch_size
+                dim.ClearField("dim_param")  # 'batch_size' 제거
+
+    for tensor in model.graph.value_info:
+        shape = tensor.type.tensor_type.shape
+        for dim in shape.dim:
+            if dim.dim_param:  # dynamic ('batch_size')인 경우
+                dim.dim_value = batch_size
+                dim.ClearField("dim_param")  # 'batch_size' 제거
+    return model
 
 def topological_sort(graph):
     input_count = {}
@@ -143,6 +166,7 @@ def traverse_graph(model):
             dtype, shape = tensor_info_map.get(input_tensor, ("?", []))
             elem_size = ONNX_TYPE_SIZE.get(dtype, 0)
             num_elements = np.prod(shape) if shape else 0
+            # num_elements = 1
             mreq = num_elements * elem_size
             node_mreq += mreq
 
@@ -153,8 +177,11 @@ def traverse_graph(model):
             dtype, shape = tensor_info_map.get(output_tensor, ("?", []))
             elem_size = ONNX_TYPE_SIZE.get(dtype, 0)
             num_elements = np.prod(shape) if shape else 0
+            # num_elements = 1
             mreq = num_elements * elem_size
             node_mreq += mreq
+
+            print(output_tensor)
 
             print(f"    {output_tensor}: dtype={dtype}, shape={shape}, mreq={mreq:,}")
         
@@ -208,8 +235,11 @@ def compute_maxpool2d_output_shape(input_shape, kernel_shape, strides, pads, cei
     return [N, C, out_H, out_W]
 
 if __name__ == "__main__":
-    model_path = "models/squeezenet1.0-3.onnx"
+    model_path = "models/" + sys.argv[1] + ".onnx"
+    batch_size = int(sys.argv[2]) if len(sys.argv) > 2 else 1
+
     model = load_and_infer_model(model_path)
+    model = resolve_dynamic_shapes(model, batch_size)
     traverse_graph(model)
 
     print(f"\nMaximum memory requirement for the model: {max_mreq:,} bytes ({max_mreq / 1024:.2f} KB / {max_mreq / (1024 * 1024):.2f} MB)")
