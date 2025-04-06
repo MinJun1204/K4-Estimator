@@ -1,0 +1,526 @@
+Topologically Sorted ONNX Graph:
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    data_0: dtype=FLOAT, shape=[1, 3, 224, 224], mreq=602,112
+    conv1_w_0: dtype=FLOAT, shape=[64, 3, 3, 3], mreq=6,912
+    conv1_b_0: dtype=FLOAT, shape=[64], mreq=256
+  Outputs:
+    conv1_1: dtype=FLOAT, shape=[1, 64, 111, 111], mreq=3,154,176
+  Node Mreq: 3,763,456 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    conv1_1: dtype=FLOAT, shape=[1, 64, 111, 111], mreq=3,154,176
+  Outputs:
+    conv1_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 3,154,176 bytes
+
+** Node: [Unnamed] | OpType: MaxPool] **
+  Inputs:
+    conv1_2: dtype=?, shape=[], mreq=0
+  Outputs:
+    pool1_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    pool1_1: dtype=?, shape=[], mreq=0
+    fire2/squeeze1x1_w_0: dtype=FLOAT, shape=[16, 64, 1, 1], mreq=4,096
+    fire2/squeeze1x1_b_0: dtype=FLOAT, shape=[16], mreq=64
+  Outputs:
+    fire2/squeeze1x1_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 4,160 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire2/squeeze1x1_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire2/squeeze1x1_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    fire2/squeeze1x1_2: dtype=?, shape=[], mreq=0
+    fire2/expand1x1_w_0: dtype=FLOAT, shape=[64, 16, 1, 1], mreq=4,096
+    fire2/expand1x1_b_0: dtype=FLOAT, shape=[64], mreq=256
+  Outputs:
+    fire2/expand1x1_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 4,352 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    fire2/squeeze1x1_2: dtype=?, shape=[], mreq=0
+    fire2/expand3x3_w_0: dtype=FLOAT, shape=[64, 16, 3, 3], mreq=36,864
+    fire2/expand3x3_b_0: dtype=FLOAT, shape=[64], mreq=256
+  Outputs:
+    fire2/expand3x3_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 37,120 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire2/expand1x1_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire2/expand1x1_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire2/expand3x3_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire2/expand3x3_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Concat] **
+  Inputs:
+    fire2/expand1x1_2: dtype=?, shape=[], mreq=0
+    fire2/expand3x3_2: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire2/concat_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    fire2/concat_1: dtype=?, shape=[], mreq=0
+    fire3/squeeze1x1_w_0: dtype=FLOAT, shape=[16, 128, 1, 1], mreq=8,192
+    fire3/squeeze1x1_b_0: dtype=FLOAT, shape=[16], mreq=64
+  Outputs:
+    fire3/squeeze1x1_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 8,256 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire3/squeeze1x1_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire3/squeeze1x1_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    fire3/squeeze1x1_2: dtype=?, shape=[], mreq=0
+    fire3/expand1x1_w_0: dtype=FLOAT, shape=[64, 16, 1, 1], mreq=4,096
+    fire3/expand1x1_b_0: dtype=FLOAT, shape=[64], mreq=256
+  Outputs:
+    fire3/expand1x1_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 4,352 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    fire3/squeeze1x1_2: dtype=?, shape=[], mreq=0
+    fire3/expand3x3_w_0: dtype=FLOAT, shape=[64, 16, 3, 3], mreq=36,864
+    fire3/expand3x3_b_0: dtype=FLOAT, shape=[64], mreq=256
+  Outputs:
+    fire3/expand3x3_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 37,120 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire3/expand1x1_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire3/expand1x1_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire3/expand3x3_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire3/expand3x3_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Concat] **
+  Inputs:
+    fire3/expand1x1_2: dtype=?, shape=[], mreq=0
+    fire3/expand3x3_2: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire3/concat_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: MaxPool] **
+  Inputs:
+    fire3/concat_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    pool3_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    pool3_1: dtype=?, shape=[], mreq=0
+    fire4/squeeze1x1_w_0: dtype=FLOAT, shape=[32, 128, 1, 1], mreq=16,384
+    fire4/squeeze1x1_b_0: dtype=FLOAT, shape=[32], mreq=128
+  Outputs:
+    fire4/squeeze1x1_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 16,512 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire4/squeeze1x1_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire4/squeeze1x1_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    fire4/squeeze1x1_2: dtype=?, shape=[], mreq=0
+    fire4/expand1x1_w_0: dtype=FLOAT, shape=[128, 32, 1, 1], mreq=16,384
+    fire4/expand1x1_b_0: dtype=FLOAT, shape=[128], mreq=512
+  Outputs:
+    fire4/expand1x1_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 16,896 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    fire4/squeeze1x1_2: dtype=?, shape=[], mreq=0
+    fire4/expand3x3_w_0: dtype=FLOAT, shape=[128, 32, 3, 3], mreq=147,456
+    fire4/expand3x3_b_0: dtype=FLOAT, shape=[128], mreq=512
+  Outputs:
+    fire4/expand3x3_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 147,968 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire4/expand1x1_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire4/expand1x1_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire4/expand3x3_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire4/expand3x3_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Concat] **
+  Inputs:
+    fire4/expand1x1_2: dtype=?, shape=[], mreq=0
+    fire4/expand3x3_2: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire4/concat_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    fire4/concat_1: dtype=?, shape=[], mreq=0
+    fire5/squeeze1x1_w_0: dtype=FLOAT, shape=[32, 256, 1, 1], mreq=32,768
+    fire5/squeeze1x1_b_0: dtype=FLOAT, shape=[32], mreq=128
+  Outputs:
+    fire5/squeeze1x1_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 32,896 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire5/squeeze1x1_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire5/squeeze1x1_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    fire5/squeeze1x1_2: dtype=?, shape=[], mreq=0
+    fire5/expand1x1_w_0: dtype=FLOAT, shape=[128, 32, 1, 1], mreq=16,384
+    fire5/expand1x1_b_0: dtype=FLOAT, shape=[128], mreq=512
+  Outputs:
+    fire5/expand1x1_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 16,896 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    fire5/squeeze1x1_2: dtype=?, shape=[], mreq=0
+    fire5/expand3x3_w_0: dtype=FLOAT, shape=[128, 32, 3, 3], mreq=147,456
+    fire5/expand3x3_b_0: dtype=FLOAT, shape=[128], mreq=512
+  Outputs:
+    fire5/expand3x3_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 147,968 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire5/expand1x1_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire5/expand1x1_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire5/expand3x3_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire5/expand3x3_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Concat] **
+  Inputs:
+    fire5/expand1x1_2: dtype=?, shape=[], mreq=0
+    fire5/expand3x3_2: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire5/concat_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: MaxPool] **
+  Inputs:
+    fire5/concat_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    pool5_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    pool5_1: dtype=?, shape=[], mreq=0
+    fire6/squeeze1x1_w_0: dtype=FLOAT, shape=[48, 256, 1, 1], mreq=49,152
+    fire6/squeeze1x1_b_0: dtype=FLOAT, shape=[48], mreq=192
+  Outputs:
+    fire6/squeeze1x1_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 49,344 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire6/squeeze1x1_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire6/squeeze1x1_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    fire6/squeeze1x1_2: dtype=?, shape=[], mreq=0
+    fire6/expand1x1_w_0: dtype=FLOAT, shape=[192, 48, 1, 1], mreq=36,864
+    fire6/expand1x1_b_0: dtype=FLOAT, shape=[192], mreq=768
+  Outputs:
+    fire6/expand1x1_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 37,632 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    fire6/squeeze1x1_2: dtype=?, shape=[], mreq=0
+    fire6/expand3x3_w_0: dtype=FLOAT, shape=[192, 48, 3, 3], mreq=331,776
+    fire6/expand3x3_b_0: dtype=FLOAT, shape=[192], mreq=768
+  Outputs:
+    fire6/expand3x3_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 332,544 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire6/expand1x1_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire6/expand1x1_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire6/expand3x3_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire6/expand3x3_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Concat] **
+  Inputs:
+    fire6/expand1x1_2: dtype=?, shape=[], mreq=0
+    fire6/expand3x3_2: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire6/concat_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    fire6/concat_1: dtype=?, shape=[], mreq=0
+    fire7/squeeze1x1_w_0: dtype=FLOAT, shape=[48, 384, 1, 1], mreq=73,728
+    fire7/squeeze1x1_b_0: dtype=FLOAT, shape=[48], mreq=192
+  Outputs:
+    fire7/squeeze1x1_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 73,920 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire7/squeeze1x1_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire7/squeeze1x1_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    fire7/squeeze1x1_2: dtype=?, shape=[], mreq=0
+    fire7/expand1x1_w_0: dtype=FLOAT, shape=[192, 48, 1, 1], mreq=36,864
+    fire7/expand1x1_b_0: dtype=FLOAT, shape=[192], mreq=768
+  Outputs:
+    fire7/expand1x1_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 37,632 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    fire7/squeeze1x1_2: dtype=?, shape=[], mreq=0
+    fire7/expand3x3_w_0: dtype=FLOAT, shape=[192, 48, 3, 3], mreq=331,776
+    fire7/expand3x3_b_0: dtype=FLOAT, shape=[192], mreq=768
+  Outputs:
+    fire7/expand3x3_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 332,544 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire7/expand1x1_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire7/expand1x1_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire7/expand3x3_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire7/expand3x3_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Concat] **
+  Inputs:
+    fire7/expand1x1_2: dtype=?, shape=[], mreq=0
+    fire7/expand3x3_2: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire7/concat_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    fire7/concat_1: dtype=?, shape=[], mreq=0
+    fire8/squeeze1x1_w_0: dtype=FLOAT, shape=[64, 384, 1, 1], mreq=98,304
+    fire8/squeeze1x1_b_0: dtype=FLOAT, shape=[64], mreq=256
+  Outputs:
+    fire8/squeeze1x1_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 98,560 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire8/squeeze1x1_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire8/squeeze1x1_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    fire8/squeeze1x1_2: dtype=?, shape=[], mreq=0
+    fire8/expand1x1_w_0: dtype=FLOAT, shape=[256, 64, 1, 1], mreq=65,536
+    fire8/expand1x1_b_0: dtype=FLOAT, shape=[256], mreq=1,024
+  Outputs:
+    fire8/expand1x1_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 66,560 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    fire8/squeeze1x1_2: dtype=?, shape=[], mreq=0
+    fire8/expand3x3_w_0: dtype=FLOAT, shape=[256, 64, 3, 3], mreq=589,824
+    fire8/expand3x3_b_0: dtype=FLOAT, shape=[256], mreq=1,024
+  Outputs:
+    fire8/expand3x3_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 590,848 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire8/expand1x1_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire8/expand1x1_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire8/expand3x3_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire8/expand3x3_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Concat] **
+  Inputs:
+    fire8/expand1x1_2: dtype=?, shape=[], mreq=0
+    fire8/expand3x3_2: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire8/concat_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    fire8/concat_1: dtype=?, shape=[], mreq=0
+    fire9/squeeze1x1_w_0: dtype=FLOAT, shape=[64, 512, 1, 1], mreq=131,072
+    fire9/squeeze1x1_b_0: dtype=FLOAT, shape=[64], mreq=256
+  Outputs:
+    fire9/squeeze1x1_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 131,328 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire9/squeeze1x1_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire9/squeeze1x1_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    fire9/squeeze1x1_2: dtype=?, shape=[], mreq=0
+    fire9/expand1x1_w_0: dtype=FLOAT, shape=[256, 64, 1, 1], mreq=65,536
+    fire9/expand1x1_b_0: dtype=FLOAT, shape=[256], mreq=1,024
+  Outputs:
+    fire9/expand1x1_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 66,560 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    fire9/squeeze1x1_2: dtype=?, shape=[], mreq=0
+    fire9/expand3x3_w_0: dtype=FLOAT, shape=[256, 64, 3, 3], mreq=589,824
+    fire9/expand3x3_b_0: dtype=FLOAT, shape=[256], mreq=1,024
+  Outputs:
+    fire9/expand3x3_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 590,848 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire9/expand1x1_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire9/expand1x1_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    fire9/expand3x3_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire9/expand3x3_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Concat] **
+  Inputs:
+    fire9/expand1x1_2: dtype=?, shape=[], mreq=0
+    fire9/expand3x3_2: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire9/concat_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Dropout] **
+  Inputs:
+    fire9/concat_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    fire9/concat_2: dtype=?, shape=[], mreq=0
+    _fire9/concat_mask_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Conv] **
+  Inputs:
+    fire9/concat_2: dtype=?, shape=[], mreq=0
+    conv10_w_0: dtype=FLOAT, shape=[1000, 512, 1, 1], mreq=2,048,000
+    conv10_b_0: dtype=FLOAT, shape=[1000], mreq=4,000
+  Outputs:
+    conv10_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 2,052,000 bytes
+
+** Node: [Unnamed] | OpType: Relu] **
+  Inputs:
+    conv10_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    conv10_2: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: GlobalAveragePool] **
+  Inputs:
+    conv10_2: dtype=?, shape=[], mreq=0
+  Outputs:
+    pool10_1: dtype=?, shape=[], mreq=0
+  Node Mreq: 0 bytes
+
+** Node: [Unnamed] | OpType: Softmax] **
+  Inputs:
+    pool10_1: dtype=?, shape=[], mreq=0
+  Outputs:
+    softmaxout_1: dtype=FLOAT, shape=[1, 1000, 1, 1], mreq=4,000
+  Node Mreq: 4,000 bytes
+
+Maximum memory requirement for the model: 3,763,456 bytes (3675.25 KB / 3.59 MB)
